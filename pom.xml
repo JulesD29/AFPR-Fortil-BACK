@@ -1,44 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <groupId>group.fortil</groupId>
-    <artifactId>formation</artifactId>
-    <name>Formation</name>
-    <version>1.0.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
-    <!-- Les modules du projet -->
-    <modules>
 
-    </modules>
-    <!-- les propriétés du projet -->
-    <properties>
-        <java.version>17</java.version>
-        <maven.compiler.target>${java.version}</maven.compiler.target>
-        <maven.compiler.source>${java.version}</maven.compiler.source>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <!-- Version des plugins maven  -->
-        <maven-compiler.version>3.11.0</maven-compiler.version>
-        <maven-resources.version>3.3.1</maven-resources.version>
-        <maven-dependency.version>3.6.0</maven-dependency.version>
-        <maven-jar.version>3.3.0</maven-jar.version>
-        <!-- Version des modules -->
-        <rbbb-core.version>${project.version}</rbbb-core.version>
-        <!-- Version de version spring-boot -->
-        <spring-boot.version>3.2.0</spring-boot.version>
-    </properties>
-    <!-- La gestion des dépendances du projet -->
-    <dependencyManagement>
-        <dependencies>
-            <!-- spring-boot -->
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>${spring-boot.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <!-- =============================================================== -->
+  <!-- Informations du projet -->
+  <!-- =============================================================== -->
+  <!-- ===== Informations Maven ===== -->
+  <groupId>com.fortil.ex1</groupId>
+  <artifactId>ex1</artifactId>
+  <version>1.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <!-- ===== Informations générales ===== -->
+  <name>ex1 Maven Webapp</name>
+  <!-- FIXME change it to the project's website -->
+  <url>http://www.example.com</url>
+
+  <!-- =============================================================== -->
+  <!-- Propriétés -->
+  <!-- =============================================================== -->
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.7</maven.compiler.source>
+    <maven.compiler.target>1.7</maven.compiler.target>
+    <springboot.version>3.2.2</springboot.version>
+  </properties>
+
+  <!-- =============================================================== -->
+  <!-- Modules -->
+  <!-- =============================================================== -->
+  <modules>
+    <module>app</module>
+    <module>lib</module>
+  </modules>
+
+
+
+  <!-- =============================================================== -->
+  <!-- Gestion des dépendances -->
+  <!-- =============================================================== -->
+<dependencyManagement>
+  <dependencies>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-dependencies</artifactId>
+      <version>${springboot.version}</version>
+      <type>pom</type>
+      <scope>import</scope>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.11</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+</dependencyManagement>
+
+  <!-- =============================================================== -->
+  <!-- Build -->
+  <!-- =============================================================== -->
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-maven-plugin</artifactId>
+        </plugin>
+        </plugins>
+    </pluginManagement>
+  </build>
+
+
 </project>
