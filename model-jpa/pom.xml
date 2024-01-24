@@ -15,7 +15,7 @@
     </parent>
 
     <!-- ===== Informations Maven ===== -->
-    <artifactId>ex1-app</artifactId>
+    <artifactId>ex2-model-jpa</artifactId>
     <version>1.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
@@ -29,21 +29,20 @@
     </properties>
 
     <!-- =============================================================== -->
-    <!-- Dépendances -->
+    <!-- Gestion des dépendances -->
     <!-- =============================================================== -->
+
     <dependencies>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <groupId>group.fortil</groupId>
+            <artifactId>ex2-commons</artifactId>
         </dependency>
+
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-web</artifactId>
-            <version>6.1.3</version>
+            <groupId>jakarta.persistence</groupId>
+            <artifactId>jakarta.persistence-api</artifactId>
         </dependency>
     </dependencies>
+
+
 </project>

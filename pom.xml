@@ -8,13 +8,13 @@
   <!-- Informations du projet -->
   <!-- =============================================================== -->
   <!-- ===== Informations Maven ===== -->
-  <groupId>com.fortil.ex1</groupId>
-  <artifactId>ex1</artifactId>
+  <groupId>group.fortil</groupId>
+  <artifactId>formation</artifactId>
   <version>1.1-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <!-- ===== Informations générales ===== -->
-  <name>ex1 Maven Webapp</name>
+  <name>formation-parent</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
@@ -34,6 +34,10 @@
   <modules>
     <module>app</module>
     <module>lib</module>
+    <module>commons</module>
+    <module>model-jpa</module>
+    <module>persistence-spring</module>
+    <module>application-spring</module>
   </modules>
 
 
@@ -43,6 +47,7 @@
   <!-- =============================================================== -->
 <dependencyManagement>
   <dependencies>
+
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-dependencies</artifactId>
@@ -50,12 +55,37 @@
       <type>pom</type>
       <scope>import</scope>
     </dependency>
+
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>8.0.32</version>
+    </dependency>
+
+
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>4.11</version>
       <scope>test</scope>
     </dependency>
+
+    <dependency>
+      <groupId>group.fortil</groupId>
+      <artifactId>ex2-commons</artifactId>
+      <version>1.1-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>group.fortil</groupId>
+      <artifactId>ex2-model-jpa</artifactId>
+      <version>1.1-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>group.fortil</groupId>
+      <artifactId>ex2-persistence-spring</artifactId>
+      <version>1.1-SNAPSHOT</version>
+    </dependency>
+
   </dependencies>
 </dependencyManagement>
 
