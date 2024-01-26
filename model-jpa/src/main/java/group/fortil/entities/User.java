@@ -2,13 +2,15 @@ package group.fortil.entities;
 
 import jakarta.persistence.*;
 
+import java.util.UUID;
+
 @Entity // This tells Hibernate to make a table out of this class
-@Table(name = "Users")
-public class Users {
+@Table(name = "User")
+public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "user_index")
-    private Long user_index;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "u_index")
+    private UUID user_index;
 
     @Column(name = "firstName")
     private String firstName;
@@ -24,8 +26,14 @@ public class Users {
 
 
 
+    // GETTER AND SETTER
+
     
-    public Long getUser_index() {
+    public void setUser_index(UUID user_index) {
+        this.user_index = user_index;
+    }
+
+    public UUID getUser_index() {
         return user_index;
     }
 

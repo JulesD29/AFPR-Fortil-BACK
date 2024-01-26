@@ -1,29 +1,29 @@
 -- Création des tables
-CREATE TABLE IF NOT EXISTS users (
+CREATE TABLE IF NOT EXISTS user (
     id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(50) NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS messages (
+CREATE TABLE IF NOT EXISTS message (
     id INT AUTO_INCREMENT PRIMARY KEY,
     message VARCHAR(50) NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS tags (
+CREATE TABLE IF NOT EXISTS tag (
     id INT AUTO_INCREMENT PRIMARY KEY,
     tag VARCHAR(50) NOT NULL
 );
 
 
 -- Insertion de données dans les tables
-INSERT INTO users (username) VALUES
+INSERT INTO user (username) VALUES
     ('Jules'),
     ('Simon');
 
-INSERT INTO messages (message) VALUES
+INSERT INTO message (message) VALUES
     ('Salut !'),
     ('Ca va ?');
 
-INSERT INTO tags (tag) VALUES
+INSERT INTO tag (tag) VALUES
     ('23-01-2023'),
     ('24-01-2023');
