@@ -1,3 +1,13 @@
 version: "3"
 
-.......
+services:
+  db:
+    image: mysql-db:latest
+    volumes:
+      - mysql-db-data:/var/lib/mysql
+    restart: always
+
+  application-spring:
+    depends_on:
+      - db
+

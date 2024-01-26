@@ -8,7 +8,7 @@ ENV MYSQL_USER=myuser
 ENV MYSQL_PASSWORD=mypassword
 
 # Copier le fichier SQL à importer dans le conteneur
-COPY mydatabase.sql /docker-entrypoint-initdb.d/
+# COPY mydatabase.sql /docker-entrypoint-initdb.d/
 
 # Exposer le port MySQL (par défaut, le port est 3306)
 EXPOSE 3306

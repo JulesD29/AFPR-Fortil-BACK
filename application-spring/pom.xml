@@ -36,6 +36,10 @@
             <groupId>group.fortil</groupId>
             <artifactId>ex2-persistence-spring</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+        </dependency>
     </dependencies>
 
 </project>
