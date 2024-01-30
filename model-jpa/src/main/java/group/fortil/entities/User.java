@@ -12,10 +12,10 @@ public class User {
     @Column(name = "u_index")
     private UUID user_index;
 
-    @Column(name = "firstName")
+    @Column(name = "first_name")
     private String firstName;
 
-    @Column(name = "lastName")
+    @Column(name = "last_name")
     private String lastName;
 
     @Column(name = "mail")

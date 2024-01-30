@@ -35,7 +35,7 @@ public class Message {
      */
     @Nonnull
     @ManyToOne(optional = false)
-    @JoinColumn(name = "user_index")
+    @JoinColumn(name = "user_index", referencedColumnName = "u_index")
     private User user;
 
     @ManyToMany
