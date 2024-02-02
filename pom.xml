@@ -25,7 +25,10 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
+
     <springboot.version>3.2.2</springboot.version>
+    <org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
+
   </properties>
 
   <!-- =============================================================== -->
@@ -38,6 +41,8 @@
     <module>model-jpa</module>
     <module>persistence-spring</module>
     <module>application-spring</module>
+    <module>spring-business-core</module>
+    <module>spring-business</module>
   </modules>
 
 
@@ -59,13 +64,24 @@
     <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
-      <version>8.0.32</version>
+      <version>8.0.33</version>
     </dependency>
 
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-core</artifactId>
       <version>6.4.1.Final</version>
+    </dependency>
+    <dependency>
+      <groupId>org.hibernate.validator</groupId>
+      <artifactId>hibernate-validator</artifactId>
+      <version>8.0.0.Final</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.mapstruct</groupId>
+      <artifactId>mapstruct</artifactId>
+      <version>${org.mapstruct.version}</version>
     </dependency>
 
     <dependency>
@@ -88,6 +104,16 @@
     <dependency>
       <groupId>group.fortil</groupId>
       <artifactId>ex2-persistence-spring</artifactId>
+      <version>1.1-SNAPSHOT</version>
+    </dependency>
+      <dependency>
+        <groupId>group.fortil</groupId>
+        <artifactId>ex2-spring-business-core</artifactId>
+        <version>1.1-SNAPSHOT</version>
+      </dependency>
+    <dependency>
+      <groupId>group.fortil</groupId>
+      <artifactId>ex2-spring-business</artifactId>
       <version>1.1-SNAPSHOT</version>
     </dependency>
 

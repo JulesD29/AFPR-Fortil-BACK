@@ -20,7 +20,7 @@ public class AppConfig {
         this.environment = environment;
     }
 
-    @Bean("Service1")
+    /*@Bean("Service1")
     Service1 getService1() {
         return Stream.of(environment.getActiveProfiles()).filter(profile->{
             return profile.equals("impl1") || profile.equals("impl2");
@@ -33,6 +33,6 @@ public class AppConfig {
             else
                 throw new RuntimeException("Profile not found");
         }).get();
-    }
+    }*/
 
 }

@@ -1,33 +1,33 @@
-package group.fortil.entities;
+package group.fortil.business;
 
-import jakarta.persistence.*;
 
-import java.util.UUID;
+import group.fortil.entities.User;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PositiveOrZero;
 
-@Entity // This tells Hibernate to make a table out of this class
-@Table(name = "User")
-public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "u_index")
+public class UserBusiness implements IUserBusiness{
+
+    @PositiveOrZero(message = "user_index cannot be negative or null")
     private Long user_index;
 
-    @Column(name = "first_name")
+    @NotNull(message = "firstName cannot be null")
     private String firstName;
 
-    @Column(name = "last_name")
+    @NotNull(message = "lastName cannot be null")
     private String lastName;
 
-    @Column(name = "mail")
+    @Email(message = "Email should be valid")
     private String mail;
 
-    @Column(name = "password")
+    @NotNull(message = "password cannot be null")
     private String password;
 
 
-    // Constructeur de User
-    public User(){}
-    public User(Long user_index, String firstName, String lastName, String mail, String password) {
+
+    // Constructeur de UserBusiness
+    public UserBusiness(){}
+    public UserBusiness(Long user_index, String firstName, String lastName, String mail, String password) {
         this.user_index = user_index;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -35,15 +35,13 @@ public class User {
         this.password = password;
     }
 
-    // GETTER AND SETTER
-
-    
-    public void setUser_index(Long user_index) {
-        this.user_index = user_index;
-    }
 
     public Long getUser_index() {
         return user_index;
+    }
+
+    public void setUser_index(Long user_index) {
+        this.user_index = user_index;
     }
 
     public String getFirstName() {
@@ -76,5 +74,11 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+
+    @Override
+    public User authenticateUser(User user) {
+        return null;
     }
 }

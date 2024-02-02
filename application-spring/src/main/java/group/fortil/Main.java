@@ -1,7 +1,11 @@
 package group.fortil;
 
+import group.fortil.entities.Message;
 import group.fortil.entities.Tag;
+import group.fortil.entities.User;
+import group.fortil.repository.MessageRepository;
 import group.fortil.repository.TagRepository;
+import group.fortil.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +26,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.stream.Stream;
 
 
@@ -32,24 +40,43 @@ import java.util.stream.Stream;
 public class Main implements CommandLineRunner {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Main.class);
-    private final String jpaUrl;
-    private final Service1 service1;
-    private final TagRepository tagRepository;
+    //private final String jpaUrl;
+    //private final Service1 service1;
+    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+
+
+    private static UserRepository userRepository;
+    private static MessageRepository messageRepository;
+    private static TagRepository tagRepository;
+
 
     // Constructeur
     public Main(
-            @Autowired TagRepository tagRepository,
-            @Value("${group.fortil.test}") String jpaUrl,
-            @Autowired Service1 service1
-            ){
+//            @Autowired Service1 service1,
+            @Autowired UserRepository userRepository,
+            @Autowired MessageRepository messageRepository,
+            @Autowired TagRepository tagRepository
+            ) {
+        //this.jpaUrl = jpaUrl;
+        //this.service1=service1;
+        this.userRepository = userRepository;
+        this.messageRepository = messageRepository;
         this.tagRepository = tagRepository;
-        this.jpaUrl = jpaUrl;
-        this.service1=service1;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
         ConfigurableApplicationContext context = SpringApplication.run(Main.class, args);
         //Stream.of( context.getBeanDefinitionNames()).sorted().forEach(LOGGER::info);
+
+        userRepository = context.getBean(UserRepository.class);
+        messageRepository = context.getBean(MessageRepository.class);
+        tagRepository = context.getBean(TagRepository.class);
+
+
+        User myUser = new User(1L,"Jules", "Dupont", "oui@oui.bzh", "ouioui");
+        userRepository.save(myUser);
+        messageRepository.save(new Message(2L, "Salut c'est moi !", dateFormat.parse("25/01/2024 15:15:15"), dateFormat.parse("30/01/2024 16:16:16"), myUser));
+        tagRepository.save(new Tag(3L, "#tag1"));
     }
     @GetMapping("/hello")
     public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
@@ -58,8 +85,8 @@ public class Main implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        LOGGER.info(jpaUrl);
-        service1.maMethode1();
+        //LOGGER.info(jpaUrl);
+        //service1.maMethode1();
     }
 
 }

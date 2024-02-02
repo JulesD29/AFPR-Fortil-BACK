@@ -5,26 +5,23 @@ import jakarta.persistence.*;
 
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 @Entity
 @Table(name = "Message")
 public class Message {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "m_index")
-    private UUID message_index;
+    private Long message_index;
 
     @Column(name = "value")
     private String value;
 
     @Column(name = "creation_date")
-    @Temporal(TemporalType.DATE)
     private Date creation_date;
 
     @Column(name = "modification_date")
-    @Temporal(TemporalType.DATE)
     private Date modification_date;
 
 
@@ -33,7 +30,6 @@ public class Message {
      *          - @ManyToOne -> n,1
      *          - @ManyToMany -> n,n
      */
-    @Nonnull
     @ManyToOne(optional = false)
     @JoinColumn(name = "user_index", referencedColumnName = "u_index")
     private User user;
@@ -46,15 +42,26 @@ public class Message {
 
 
 
+    public Message(){}
+    public Message(Long message_index, String value, Date creation_date, Date modification_date, User user) {
+        this.message_index = message_index;
+        this.value = value;
+        this.creation_date = creation_date;
+        this.modification_date = modification_date;
+        this.user=user;
+    }
+
+
+
     // GETTER AND SETTER
 
 
 
-    public UUID getMessage_index() {
+    public Long getMessage_index() {
         return message_index;
     }
 
-    public void setMessage_index(UUID message_index) {
+    public void setMessage_index(Long message_index) {
         this.message_index = message_index;
     }
 
@@ -82,12 +89,11 @@ public class Message {
         this.modification_date = modification_date;
     }
 
-    @Nonnull
     public User getUser() {
         return user;
     }
 
-    public void setUser(@Nonnull User user) {
+    public void setUser(User user) {
         this.user = user;
     }
 

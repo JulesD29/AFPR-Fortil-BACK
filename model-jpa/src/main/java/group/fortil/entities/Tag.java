@@ -9,24 +9,28 @@ import java.util.UUID;
 public class Tag {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "t_index")
-    private UUID tag_index;
+    private Long tag_index;
 
     @Column(name = "value")
     private String value;
 
 
-
+    public Tag(){}
+    public Tag(Long tag_index, String value) {
+        this.tag_index = tag_index;
+        this.value = value;
+    }
 
     // GETTER AND SETTER
 
 
-    public UUID getTag_index() {
+    public Long getTag_index() {
         return tag_index;
     }
 
-    public void setTag_index(UUID tag_index) {
+    public void setTag_index(Long tag_index) {
         this.tag_index = tag_index;
     }
 
