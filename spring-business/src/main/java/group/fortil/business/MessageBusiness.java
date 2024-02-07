@@ -1,10 +1,14 @@
 package group.fortil.business;
 
 import group.fortil.entities.Message;
+import group.fortil.entities.Tag;
 import group.fortil.entities.User;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 
+import javax.swing.text.html.HTML;
 import java.util.Date;
+import java.util.List;
 
 public class MessageBusiness implements IMessageBusiness {
 
@@ -23,6 +27,9 @@ public class MessageBusiness implements IMessageBusiness {
     @NotNull(message = "User can't be null")
     private UserBusiness userBusiness;
 
+    private List<@Valid TagBusiness> tagsBusiness;
+
+
     // Ajouter liste des tags
 
 
@@ -33,12 +40,13 @@ public class MessageBusiness implements IMessageBusiness {
         this.creation_date = creation_date;
         this.userBusiness=userBusiness;
     }
-    public MessageBusiness(Long message_index, String value, Date creation_date, Date modification_date, UserBusiness userBusiness) {
+    public MessageBusiness(Long message_index, String value, Date creation_date, Date modification_date, UserBusiness userBusiness, List<TagBusiness> tagsBusiness) {
         this.message_index = message_index;
         this.value = value;
         this.creation_date = creation_date;
         this.modification_date = modification_date;
         this.userBusiness=userBusiness;
+        this.tagsBusiness=tagsBusiness;
     }
 
     public Long getMessage_index() {

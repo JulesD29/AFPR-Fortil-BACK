@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,6 +36,7 @@ public class MessageController implements IMessageController {
     @Override
     @PostMapping("/messages")
     public MessageBusiness create(MessageBusiness messageBusiness) {
+        messageBusiness.setCreation_date(new Date());
         return messageService.create(messageBusiness);
     }
 
@@ -44,9 +46,12 @@ public class MessageController implements IMessageController {
         MessageBusiness message = messageService.findById(id).orElseThrow(() -> new ResourceNotFoundException("Message not found"));
 
         message.setValue(messageDetails.getValue());
-        message.setModification_date(messageDetails.getModification_date());
-        final MessageBusiness updatedMessage = messageService.update(message);
+        message.setModification_date(new Date());
+        message.setUser(messageDetails.getUser());
+
+        MessageBusiness updatedMessage = messageService.update(message);
         return ResponseEntity.ok(updatedMessage);
+
     }
 
     @Override

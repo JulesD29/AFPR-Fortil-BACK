@@ -40,7 +40,6 @@ public class Main implements CommandLineRunner {
     private static final Logger LOGGER = LoggerFactory.getLogger(Main.class);
     //private final String jpaUrl;
     //private final Service1 service1;
-    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 
 
     private static UserRepository userRepository;
@@ -90,7 +89,7 @@ public class Main implements CommandLineRunner {
 //        Optional<UserBusiness> userBusiness = userService.findById(5L);
 //        userBusiness.ifPresent(userBusiness1 -> {
 //            try {
-//                newMessageFromBusiness("Coucou c'est moi le BusinessLayer", dateFormat.parse("01/02/2024 15:15:15"), userBusiness1);
+//                newMessageFromBusiness("Coucou c'est moi le BusinessLayer", new Date()), userBusiness1);
 //            } catch (ParseException e) {
 //                throw new RuntimeException(e);
 //            }
@@ -115,10 +114,10 @@ public class Main implements CommandLineRunner {
 
 
     public static void initDatabase() throws ParseException {
-        User myUser = new User("Jules", "Dupont", "oui@oui.bzh", "ouioui");
+        User myUser = new User("Benoît", "Decajou", "non@non.bzh", "nonnon");
         userRepository.save(myUser);
-        messageRepository.save(new Message("Salut c'est moi !", dateFormat.parse("25/01/2024 15:15:15"), myUser));
-        tagRepository.save(new Tag("#tag"));
+        messageRepository.save(new Message("Yo !", new Date(), myUser));
+        tagRepository.save(new Tag("#tag2Beubeu"));
     }
 
     public static void newMessageFromBusiness(String message, Date creationDate, UserBusiness userBusiness) {

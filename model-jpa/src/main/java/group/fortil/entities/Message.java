@@ -47,12 +47,13 @@ public class Message {
         this.creation_date = creation_date;
         this.user = user;
     }
-    public Message(Long message_index, String value, Date creation_date, Date modification_date, User user) {
+    public Message(Long message_index, String value, Date creation_date, Date modification_date, User user, List<Tag> tags) {
         this.message_index = message_index;
         this.value = value;
         this.creation_date = creation_date;
         this.modification_date = modification_date;
         this.user=user;
+        this.tags=tags;
     }
 
 
