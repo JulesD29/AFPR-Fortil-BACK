@@ -35,8 +35,4 @@ public class TagBusiness implements ITagBusiness {
         this.value = value;
     }
 
-    @Override
-    public Tag authenticateTag(Tag tag) {
-        return null;
-    }
 }

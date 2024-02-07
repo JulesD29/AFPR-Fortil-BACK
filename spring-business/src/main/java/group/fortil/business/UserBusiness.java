@@ -75,10 +75,4 @@ public class UserBusiness implements IUserBusiness{
     public void setPassword(String password) {
         this.password = password;
     }
-
-
-    @Override
-    public User authenticateUser(User user) {
-        return null;
-    }
 }

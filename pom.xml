@@ -43,6 +43,8 @@
     <module>application-spring</module>
     <module>spring-business-core</module>
     <module>spring-business</module>
+    <module>ws-api</module>
+    <module>ws-server</module>
   </modules>
 
 
@@ -52,7 +54,6 @@
   <!-- =============================================================== -->
 <dependencyManagement>
   <dependencies>
-
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-dependencies</artifactId>
@@ -62,13 +63,13 @@
     </dependency>
 
     <dependency>
-      <groupId>mysql</groupId>
-      <artifactId>mysql-connector-java</artifactId>
-      <version>8.0.33</version>
+      <groupId>com.mysql</groupId>
+      <artifactId>mysql-connector-j</artifactId>
+      <version>8.3.0</version>
     </dependency>
 
     <dependency>
-      <groupId>org.hibernate</groupId>
+      <groupId>org.hibernate.orm</groupId>
       <artifactId>hibernate-core</artifactId>
       <version>6.4.1.Final</version>
     </dependency>
@@ -82,6 +83,13 @@
       <groupId>org.mapstruct</groupId>
       <artifactId>mapstruct</artifactId>
       <version>${org.mapstruct.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.velocity</groupId>
+      <artifactId>velocity</artifactId>
+      <version>1.7</version>
+      <scope>compile</scope>
     </dependency>
 
     <dependency>
@@ -116,7 +124,16 @@
       <artifactId>ex2-spring-business</artifactId>
       <version>1.1-SNAPSHOT</version>
     </dependency>
-
+    <dependency>
+      <groupId>group.fortil</groupId>
+      <artifactId>ex2-ws-api</artifactId>
+      <version>1.1-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>group.fortil</groupId>
+      <artifactId>ex2-ws-server</artifactId>
+      <version>1.1-SNAPSHOT</version>
+    </dependency>
   </dependencies>
 </dependencyManagement>
 

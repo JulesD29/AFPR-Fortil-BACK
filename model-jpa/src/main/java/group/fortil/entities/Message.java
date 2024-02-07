@@ -1,6 +1,5 @@
 package group.fortil.entities;
 
-import jakarta.annotation.Nonnull;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -43,6 +42,11 @@ public class Message {
 
 
     public Message(){}
+    public Message(String value, Date creation_date, User user) {
+        this.value = value;
+        this.creation_date = creation_date;
+        this.user = user;
+    }
     public Message(Long message_index, String value, Date creation_date, Date modification_date, User user) {
         this.message_index = message_index;
         this.value = value;

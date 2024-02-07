@@ -27,6 +27,12 @@ public class User {
 
     // Constructeur de User
     public User(){}
+    public User(String firstName, String lastName, String mail, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.mail = mail;
+        this.password = password;
+    }
     public User(Long user_index, String firstName, String lastName, String mail, String password) {
         this.user_index = user_index;
         this.firstName = firstName;

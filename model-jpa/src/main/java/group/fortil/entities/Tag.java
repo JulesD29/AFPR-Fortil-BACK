@@ -18,6 +18,9 @@ public class Tag {
 
 
     public Tag(){}
+    public Tag(String value) {
+        this.value = value;
+    }
     public Tag(Long tag_index, String value) {
         this.tag_index = tag_index;
         this.value = value;

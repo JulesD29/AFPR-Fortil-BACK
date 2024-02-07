@@ -4,6 +4,8 @@ import group.fortil.entities.Message;
 import group.fortil.entities.User;
 import jakarta.validation.constraints.*;
 
+import java.util.Date;
+
 public class MessageBusiness implements IMessageBusiness {
 
     @PositiveOrZero(message = "message_index cannot be negative or null")
@@ -13,25 +15,30 @@ public class MessageBusiness implements IMessageBusiness {
     private String value;
 
     @PastOrPresent(message = "Error in message creation date")
-    private String creation_date;
+    private Date creation_date;
 
     @PastOrPresent(message = "Error in message modification")
-    private String modification_date;
+    private Date modification_date;
 
     @NotNull(message = "User can't be null")
-    private User user;
+    private UserBusiness userBusiness;
 
     // Ajouter liste des tags
 
 
     // Constructeur
     public MessageBusiness(){}
-    public MessageBusiness(Long message_index, String value, String creation_date, String modification_date, User user) {
+    public MessageBusiness(String value, Date creation_date, UserBusiness userBusiness) {
+        this.value = value;
+        this.creation_date = creation_date;
+        this.userBusiness=userBusiness;
+    }
+    public MessageBusiness(Long message_index, String value, Date creation_date, Date modification_date, UserBusiness userBusiness) {
         this.message_index = message_index;
         this.value = value;
         this.creation_date = creation_date;
         this.modification_date = modification_date;
-        this.user=user;
+        this.userBusiness=userBusiness;
     }
 
     public Long getMessage_index() {
@@ -50,32 +57,28 @@ public class MessageBusiness implements IMessageBusiness {
         this.value = value;
     }
 
-    public String getCreation_date() {
+    public Date getCreation_date() {
         return creation_date;
     }
 
-    public void setCreation_date(String creation_date) {
+    public void setCreation_date(Date creation_date) {
         this.creation_date = creation_date;
     }
 
-    public String getModification_date() {
+    public Date getModification_date() {
         return modification_date;
     }
 
-    public void setModification_date(String modification_date) {
+    public void setModification_date(Date modification_date) {
         this.modification_date = modification_date;
     }
 
-    public User getUser() {
-        return user;
+    public UserBusiness getUser() {
+        return userBusiness;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(UserBusiness userBusiness) {
+        this.userBusiness = userBusiness;
     }
 
-    @Override
-    public Message authenticateMessage(Message message) {
-        return null;
-    }
 }

@@ -3,38 +3,36 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
-    <!-- =============================================================== -->
-    <!-- Informations du projet -->
-    <!-- =============================================================== -->
-    <!-- ===== Projet Parent Maven ===== -->
     <parent>
         <groupId>group.fortil</groupId>
         <artifactId>formation</artifactId>
         <version>1.1-SNAPSHOT</version>
     </parent>
 
-    <!-- ===== Informations Maven ===== -->
-    <artifactId>ex2-commons</artifactId>
-    <version>1.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <artifactId>ex2-ws-api</artifactId>
 
-    <!-- =============================================================== -->
-    <!-- Propriétés -->
-    <!-- =============================================================== -->
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
-
     <dependencies>
         <dependency>
-            <groupId>org.hibernate.validator</groupId>
-            <artifactId>hibernate-validator</artifactId>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
         </dependency>
-    </dependencies>
+        <dependency>
+            <groupId>org.apache.velocity</groupId>
+            <artifactId>velocity</artifactId>
+        </dependency>
 
+
+        <dependency>
+            <groupId>group.fortil</groupId>
+            <artifactId>ex2-spring-business</artifactId>
+        </dependency>
+
+    </dependencies>
 
 </project>

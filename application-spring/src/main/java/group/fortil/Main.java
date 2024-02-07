@@ -1,36 +1,34 @@
 package group.fortil;
 
+import group.fortil.business.MessageBusiness;
+import group.fortil.business.UserBusiness;
+import group.fortil.controllers.UserController;
 import group.fortil.entities.Message;
 import group.fortil.entities.Tag;
 import group.fortil.entities.User;
 import group.fortil.repository.MessageRepository;
 import group.fortil.repository.TagRepository;
 import group.fortil.repository.UserRepository;
+import group.fortil.service.MessageService;
+import group.fortil.service.TagService;
+import group.fortil.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Configurable;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Date;
-import java.util.stream.Stream;
+import java.util.Optional;
 
 
 @SpringBootApplication
@@ -49,19 +47,29 @@ public class Main implements CommandLineRunner {
     private static MessageRepository messageRepository;
     private static TagRepository tagRepository;
 
+    private static UserService userService;
+
+    private static MessageService messageService;
+
+    private static TagService tagService;
+
 
     // Constructeur
     public Main(
 //            @Autowired Service1 service1,
-            @Autowired UserRepository userRepository,
-            @Autowired MessageRepository messageRepository,
-            @Autowired TagRepository tagRepository
+//            @Autowired UserRepository userRepository,
+//            @Autowired MessageRepository messageRepository,
+//            @Autowired TagRepository tagRepository,
+            @Autowired UserService userService,
+            @Autowired MessageService messageService,
+            @Autowired TagService tagService
             ) {
         //this.jpaUrl = jpaUrl;
         //this.service1=service1;
-        this.userRepository = userRepository;
-        this.messageRepository = messageRepository;
-        this.tagRepository = tagRepository;
+
+        this.userService=userService;
+        this.messageService=messageService;
+        this.tagService=tagService;
     }
 
     public static void main(String[] args) throws ParseException {
@@ -73,10 +81,26 @@ public class Main implements CommandLineRunner {
         tagRepository = context.getBean(TagRepository.class);
 
 
-        User myUser = new User(1L,"Jules", "Dupont", "oui@oui.bzh", "ouioui");
-        userRepository.save(myUser);
-        messageRepository.save(new Message(2L, "Salut c'est moi !", dateFormat.parse("25/01/2024 15:15:15"), dateFormat.parse("30/01/2024 16:16:16"), myUser));
-        tagRepository.save(new Tag(3L, "#tag1"));
+
+        // Init mydatabase
+        //initDatabase();
+
+
+        // Use of services #create
+//        Optional<UserBusiness> userBusiness = userService.findById(5L);
+//        userBusiness.ifPresent(userBusiness1 -> {
+//            try {
+//                newMessageFromBusiness("Coucou c'est moi le BusinessLayer", dateFormat.parse("01/02/2024 15:15:15"), userBusiness1);
+//            } catch (ParseException e) {
+//                throw new RuntimeException(e);
+//            }
+//        });
+
+
+        //Controller
+
+
+
     }
     @GetMapping("/hello")
     public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
@@ -87,6 +111,22 @@ public class Main implements CommandLineRunner {
     public void run(String... args) throws Exception {
         //LOGGER.info(jpaUrl);
         //service1.maMethode1();
+    }
+
+
+    public static void initDatabase() throws ParseException {
+        User myUser = new User("Jules", "Dupont", "oui@oui.bzh", "ouioui");
+        userRepository.save(myUser);
+        messageRepository.save(new Message("Salut c'est moi !", dateFormat.parse("25/01/2024 15:15:15"), myUser));
+        tagRepository.save(new Tag("#tag"));
+    }
+
+    public static void newMessageFromBusiness(String message, Date creationDate, UserBusiness userBusiness) {
+        MessageBusiness messageBusiness = new MessageBusiness();
+        messageBusiness.setValue(message);
+        messageBusiness.setCreation_date(creationDate);
+        messageBusiness.setUser(userBusiness);
+        messageService.create(messageBusiness);
     }
 
 }
