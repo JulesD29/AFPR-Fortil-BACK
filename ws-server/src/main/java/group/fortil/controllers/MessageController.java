@@ -8,10 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.logging.Logger;
 
 @RestController
 @RequestMapping("messages-api")
@@ -44,6 +42,9 @@ public class MessageController implements IMessageController {
     @PutMapping("/messages/{id}")
     public ResponseEntity<MessageBusiness> update(Long id, MessageBusiness messageDetails) throws ResourceNotFoundException {
         MessageBusiness message = messageService.findById(id).orElseThrow(() -> new ResourceNotFoundException("Message not found"));
+
+        if(!Objects.equals(message.getUser().getUser_index(), messageDetails.getUser().getUser_index()))
+            return ResponseEntity.badRequest().body(message); // User who tries to modify is not the one who creates the message !
 
         message.setValue(messageDetails.getValue());
         message.setModification_date(new Date());
