@@ -1,11 +1,8 @@
 package group.fortil.mapper;
 
-import group.fortil.business.MessageBusiness;
 import group.fortil.business.TagBusiness;
-import group.fortil.entities.Message;
 import group.fortil.entities.Tag;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 @Mapper(componentModel = "spring")

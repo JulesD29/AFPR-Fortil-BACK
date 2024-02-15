@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -25,6 +24,7 @@ public class MessageService implements IMessageService<MessageBusiness, Serializ
     @Autowired
     private MessageMapper messageMapper;
 
+
     private List<Message> mapListBusinessToModel(List<MessageBusiness> messageBusiness) {
         return messageBusiness.stream().map(e -> messageMapper.messageBusinessToMessage(e)).collect(Collectors.toList());
     }
@@ -36,9 +36,6 @@ public class MessageService implements IMessageService<MessageBusiness, Serializ
     private MessageBusiness saveModelFromBusiness(MessageBusiness messageBusiness) {
         return messageMapper.messageToMessageBusiness(messageRepository.save(messageMapper.messageBusinessToMessage(messageBusiness)));
     }
-
-
-
 
     @Override
     public MessageBusiness create(@Valid MessageBusiness messageBusiness) {

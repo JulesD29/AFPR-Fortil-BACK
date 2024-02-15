@@ -1,15 +1,14 @@
 package group.fortil.controllers;
 
 import group.fortil.business.MessageBusiness;
+import group.fortil.exceptions.CustomNotFoundException;
 import group.fortil.interfaceControllers.IMessageController;
 import group.fortil.service.MessageService;
-import org.apache.velocity.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
-import java.util.logging.Logger;
 
 @RestController
 @RequestMapping("messages-api")
@@ -26,8 +25,8 @@ public class MessageController implements IMessageController {
 
     @Override
     @GetMapping("/messages/{id}")
-    public ResponseEntity<MessageBusiness> findById(Long id) throws ResourceNotFoundException {
-        MessageBusiness messageBusiness = messageService.findById(id).orElseThrow(() -> new ResourceNotFoundException("Message not found for this id ::" + id));
+    public ResponseEntity<MessageBusiness> findById(Long id)  {
+        MessageBusiness messageBusiness = messageService.findById(id).orElseThrow(() -> new CustomNotFoundException("Message not found for this id ::" + id));
         return ResponseEntity.ok().body(messageBusiness);
     }
 
@@ -40,15 +39,15 @@ public class MessageController implements IMessageController {
 
     @Override
     @PutMapping("/messages/{id}")
-    public ResponseEntity<MessageBusiness> update(Long id, MessageBusiness messageDetails) throws ResourceNotFoundException {
-        MessageBusiness message = messageService.findById(id).orElseThrow(() -> new ResourceNotFoundException("Message not found"));
+    public ResponseEntity<MessageBusiness> update(Long id, MessageBusiness messageDetails) {
+        MessageBusiness message = messageService.findById(id).orElseThrow(() -> new CustomNotFoundException("Message not found for this id ::" + id));
 
         if(!Objects.equals(message.getUser().getUser_index(), messageDetails.getUser().getUser_index()))
-            return ResponseEntity.badRequest().body(message); // User who tries to modify is not the one who creates the message !
+            return ResponseEntity.badRequest().body(messageDetails); // User who tries to modify is not the one who creates the message !
 
         message.setValue(messageDetails.getValue());
         message.setModification_date(new Date());
-        message.setUser(messageDetails.getUser());
+        //message.setUser(messageDetails.getUser());
 
         MessageBusiness updatedMessage = messageService.update(message);
         return ResponseEntity.ok(updatedMessage);
@@ -57,8 +56,8 @@ public class MessageController implements IMessageController {
 
     @Override
     @DeleteMapping("/messages/{id}")
-    public Map<String, Boolean> deleteById(Long id) throws ResourceNotFoundException {
-        MessageBusiness message = messageService.findById(id).orElseThrow(() -> new ResourceNotFoundException("Message not found"));
+    public Map<String, Boolean> deleteById(Long id)  {
+        MessageBusiness message = messageService.findById(id).orElseThrow(() -> new CustomNotFoundException("Message not found for this id ::" + id));
 
         messageService.delete(message);
         Map<String, Boolean> response = new HashMap<>();

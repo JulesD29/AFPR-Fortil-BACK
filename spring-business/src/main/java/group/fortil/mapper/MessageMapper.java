@@ -3,7 +3,6 @@ package group.fortil.mapper;
 import group.fortil.business.MessageBusiness;
 import group.fortil.entities.Message;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 @Mapper(componentModel = "spring")

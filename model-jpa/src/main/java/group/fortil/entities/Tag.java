@@ -2,8 +2,6 @@ package group.fortil.entities;
 
 import jakarta.persistence.*;
 
-import java.util.UUID;
-
 @Entity
 @Table(name = "Tag")
 public class Tag {

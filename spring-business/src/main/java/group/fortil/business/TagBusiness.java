@@ -1,6 +1,5 @@
 package group.fortil.business;
 
-import group.fortil.entities.Tag;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.PositiveOrZero;
 
@@ -13,6 +12,9 @@ public class TagBusiness implements ITagBusiness {
     private String value;
 
     public TagBusiness(){}
+    public TagBusiness(String value) {
+        this.value = value;
+    }
     public TagBusiness(Long tag_index, String value) {
         this.tag_index = tag_index;
         this.value = value;

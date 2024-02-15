@@ -2,7 +2,6 @@ package group.fortil.interfaceControllers;
 
 import group.fortil.business.TagBusiness;
 import jakarta.validation.Valid;
-import org.apache.velocity.exception.ResourceNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

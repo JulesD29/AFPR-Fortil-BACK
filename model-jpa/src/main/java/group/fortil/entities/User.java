@@ -2,8 +2,6 @@ package group.fortil.entities;
 
 import jakarta.persistence.*;
 
-import java.util.UUID;
-
 @Entity // This tells Hibernate to make a table out of this class
 @Table(name = "User")
 public class User {

@@ -6,18 +6,13 @@ import group.fortil.mapper.UserMapper;
 import group.fortil.repository.UserRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
-import java.io.Serial;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Service
 @Validated
@@ -25,6 +20,7 @@ public class UserService implements IUserService<UserBusiness, Serializable> {
 
     @Autowired
     private UserRepository userRepository;
+    // voir pour faire constructeur
 
     @Autowired
     private UserMapper userMapper;
@@ -41,9 +37,6 @@ public class UserService implements IUserService<UserBusiness, Serializable> {
     private UserBusiness saveModelFromBusiness(UserBusiness userBusiness) {
         return userMapper.userToUserBusiness(userRepository.save(userMapper.userBusinessToUser(userBusiness)));
     }
-
-
-
 
 
     @Override

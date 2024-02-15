@@ -1,7 +1,6 @@
 package group.fortil.business;
 
 
-import group.fortil.entities.User;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
@@ -27,6 +26,12 @@ public class UserBusiness implements IUserBusiness{
 
     // Constructeur de UserBusiness
     public UserBusiness(){}
+    public UserBusiness(String firstName, String lastName, String mail, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.mail = mail;
+        this.password = password;
+    }
     public UserBusiness(Long user_index, String firstName, String lastName, String mail, String password) {
         this.user_index = user_index;
         this.firstName = firstName;

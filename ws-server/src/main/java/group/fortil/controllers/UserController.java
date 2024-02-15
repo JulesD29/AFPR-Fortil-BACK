@@ -1,9 +1,9 @@
 package group.fortil.controllers;
 
 import group.fortil.business.UserBusiness;
+import group.fortil.exceptions.CustomNotFoundException;
 import group.fortil.interfaceControllers.IUserController;
 import group.fortil.service.UserService;
-import org.apache.velocity.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -28,8 +28,8 @@ public class UserController implements IUserController {
 
     @Override
     @GetMapping("/users/{id}")
-    public ResponseEntity<UserBusiness> findById(Long id) throws ResourceNotFoundException {
-        UserBusiness userBusiness = userService.findById(id).orElseThrow(() -> new ResourceNotFoundException("User not found for this id ::" + id));
+    public ResponseEntity<UserBusiness> findById(Long id) {
+        UserBusiness userBusiness = userService.findById(id).orElseThrow(() -> new CustomNotFoundException("User not found for this id ::" + id));
         return ResponseEntity.ok().body(userBusiness);    }
 
     @Override
@@ -40,8 +40,8 @@ public class UserController implements IUserController {
 
     @Override
     @PutMapping("/users/{id}")
-    public ResponseEntity<UserBusiness> update(Long id, UserBusiness userDetails) throws ResourceNotFoundException {
-        UserBusiness user = userService.findById(id).orElseThrow(() -> new ResourceNotFoundException("User not found"));
+    public ResponseEntity<UserBusiness> update(Long id, UserBusiness userDetails)  {
+        UserBusiness user = userService.findById(id).orElseThrow(() -> new CustomNotFoundException("User not found for this id ::" + id));
 
         user.setFirstName(userDetails.getFirstName());
         user.setLastName(userDetails.getLastName());
@@ -54,7 +54,7 @@ public class UserController implements IUserController {
     @Override
     @DeleteMapping("/users/{id}")
     public Map<String, Boolean> deleteById(Long id) {
-        UserBusiness user = userService.findById(id).orElseThrow(() -> new ResourceNotFoundException("User not found"));
+        UserBusiness user = userService.findById(id).orElseThrow(() -> new CustomNotFoundException("User not found for this id ::" + id));
 
         userService.delete(user);
         Map<String, Boolean> response = new HashMap<>();

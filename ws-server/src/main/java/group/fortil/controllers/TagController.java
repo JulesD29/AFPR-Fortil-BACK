@@ -1,9 +1,9 @@
 package group.fortil.controllers;
 
 import group.fortil.business.TagBusiness;
+import group.fortil.exceptions.CustomNotFoundException;
 import group.fortil.interfaceControllers.ITagController;
 import group.fortil.service.TagService;
-import org.apache.velocity.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -28,8 +28,8 @@ public class TagController implements ITagController {
 
     @Override
     @GetMapping("/tags/{id}")
-    public ResponseEntity<TagBusiness> findById(Long id) throws ResourceNotFoundException {
-        TagBusiness tagBusiness = tagService.findById(id).orElseThrow(() -> new ResourceNotFoundException("Tag not found for this id ::" + id));
+    public ResponseEntity<TagBusiness> findById(Long id)  {
+        TagBusiness tagBusiness = tagService.findById(id).orElseThrow(() -> new CustomNotFoundException("Tag not found for this id ::" + id));
         return ResponseEntity.ok().body(tagBusiness);
     }
 
@@ -41,8 +41,8 @@ public class TagController implements ITagController {
 
     @Override
     @PutMapping("/tags/{id}")
-    public ResponseEntity<TagBusiness> update(Long id, TagBusiness tagDetails) throws ResourceNotFoundException {
-        TagBusiness tag = tagService.findById(id).orElseThrow(() -> new ResourceNotFoundException("Tag not found"));
+    public ResponseEntity<TagBusiness> update(Long id, TagBusiness tagDetails)  {
+        TagBusiness tag = tagService.findById(id).orElseThrow(() -> new CustomNotFoundException("Tag not found for this id ::" + id));
 
         tag.setValue(tagDetails.getValue());
         final TagBusiness updatedTag = tagService.update(tag);
@@ -51,8 +51,8 @@ public class TagController implements ITagController {
 
     @Override
     @DeleteMapping("/tags/{id}")
-    public Map<String, Boolean> deleteById(Long id) throws ResourceNotFoundException {
-        TagBusiness tag = tagService.findById(id).orElseThrow(() -> new ResourceNotFoundException("Tag not found"));
+    public Map<String, Boolean> deleteById(Long id)  {
+        TagBusiness tag = tagService.findById(id).orElseThrow(() -> new CustomNotFoundException("Tag not found for this id ::" + id));
 
         tagService.delete(tag);
         Map<String, Boolean> response = new HashMap<>();
