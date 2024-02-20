@@ -25,7 +25,7 @@ public class MessageController implements IMessageController {
 
     @Override
     @GetMapping("/messages/{id}")
-    public ResponseEntity<MessageBusiness> findById(Long id)  {
+    public ResponseEntity<MessageBusiness> findById(Long id) {
         MessageBusiness messageBusiness = messageService.findById(id).orElseThrow(() -> new CustomNotFoundException("Message not found for this id ::" + id));
         return ResponseEntity.ok().body(messageBusiness);
     }
@@ -42,7 +42,7 @@ public class MessageController implements IMessageController {
     public ResponseEntity<MessageBusiness> update(Long id, MessageBusiness messageDetails) {
         MessageBusiness message = messageService.findById(id).orElseThrow(() -> new CustomNotFoundException("Message not found for this id ::" + id));
 
-        if(!Objects.equals(message.getUser().getUser_index(), messageDetails.getUser().getUser_index()))
+        if (!Objects.equals(message.getUser().getUser_index(), messageDetails.getUser().getUser_index()))
             return ResponseEntity.badRequest().body(messageDetails); // User who tries to modify is not the one who creates the message !
 
         message.setValue(messageDetails.getValue());
@@ -56,7 +56,7 @@ public class MessageController implements IMessageController {
 
     @Override
     @DeleteMapping("/messages/{id}")
-    public Map<String, Boolean> deleteById(Long id)  {
+    public Map<String, Boolean> deleteById(Long id) {
         MessageBusiness message = messageService.findById(id).orElseThrow(() -> new CustomNotFoundException("Message not found for this id ::" + id));
 
         messageService.delete(message);

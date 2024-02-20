@@ -30,7 +30,8 @@ public class UserController implements IUserController {
     @GetMapping("/users/{id}")
     public ResponseEntity<UserBusiness> findById(Long id) {
         UserBusiness userBusiness = userService.findById(id).orElseThrow(() -> new CustomNotFoundException("User not found for this id ::" + id));
-        return ResponseEntity.ok().body(userBusiness);    }
+        return ResponseEntity.ok().body(userBusiness);
+    }
 
     @Override
     @PostMapping("/users")
@@ -40,7 +41,7 @@ public class UserController implements IUserController {
 
     @Override
     @PutMapping("/users/{id}")
-    public ResponseEntity<UserBusiness> update(Long id, UserBusiness userDetails)  {
+    public ResponseEntity<UserBusiness> update(Long id, UserBusiness userDetails) {
         UserBusiness user = userService.findById(id).orElseThrow(() -> new CustomNotFoundException("User not found for this id ::" + id));
 
         user.setFirstName(userDetails.getFirstName());

@@ -1,154 +1,151 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-  <!-- =============================================================== -->
-  <!-- Informations du projet -->
-  <!-- =============================================================== -->
-  <!-- ===== Informations Maven ===== -->
-  <groupId>group.fortil</groupId>
-  <artifactId>formation</artifactId>
-  <version>1.1-SNAPSHOT</version>
-  <packaging>pom</packaging>
+    <!-- =============================================================== -->
+    <!-- Informations du projet -->
+    <!-- =============================================================== -->
+    <!-- ===== Informations Maven ===== -->
+    <groupId>group.fortil</groupId>
+    <artifactId>formation</artifactId>
+    <version>1.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
 
-  <!-- ===== Informations générales ===== -->
-  <name>formation-parent</name>
-  <!-- FIXME change it to the project's website -->
-  <url>http://www.example.com</url>
+    <!-- ===== Informations générales ===== -->
+    <name>formation-parent</name>
 
-  <!-- =============================================================== -->
-  <!-- Propriétés -->
-  <!-- =============================================================== -->
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>1.7</maven.compiler.source>
-    <maven.compiler.target>1.7</maven.compiler.target>
+    <!-- =============================================================== -->
+    <!-- Propriétés -->
+    <!-- =============================================================== -->
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
 
-    <springboot.version>3.2.2</springboot.version>
-    <org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
+        <springboot.version>3.2.2</springboot.version>
+        <org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
 
-  </properties>
+    </properties>
 
-  <!-- =============================================================== -->
-  <!-- Modules -->
-  <!-- =============================================================== -->
-  <modules>
-    <module>app</module>
-    <module>lib</module>
-    <module>commons</module>
-    <module>model-jpa</module>
-    <module>persistence-spring</module>
-    <module>application-spring</module>
-    <module>spring-business-core</module>
-    <module>spring-business</module>
-    <module>ws-api</module>
-    <module>ws-server</module>
-  </modules>
+    <!-- =============================================================== -->
+    <!-- Modules -->
+    <!-- =============================================================== -->
+    <modules>
+        <module>app</module>
+        <module>lib</module>
+        <module>commons</module>
+        <module>model-jpa</module>
+        <module>persistence-spring</module>
+        <module>application-spring</module>
+        <module>spring-business-core</module>
+        <module>spring-business</module>
+        <module>ws-api</module>
+        <module>ws-server</module>
+    </modules>
 
 
+    <!-- =============================================================== -->
+    <!-- Gestion des dépendances -->
+    <!-- =============================================================== -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${springboot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
 
-  <!-- =============================================================== -->
-  <!-- Gestion des dépendances -->
-  <!-- =============================================================== -->
-<dependencyManagement>
-  <dependencies>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-dependencies</artifactId>
-      <version>${springboot.version}</version>
-      <type>pom</type>
-      <scope>import</scope>
-    </dependency>
+            <dependency>
+                <groupId>com.mysql</groupId>
+                <artifactId>mysql-connector-j</artifactId>
+                <version>8.3.0</version>
+            </dependency>
 
-    <dependency>
-      <groupId>com.mysql</groupId>
-      <artifactId>mysql-connector-j</artifactId>
-      <version>8.3.0</version>
-    </dependency>
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-core</artifactId>
+                <version>6.4.2.Final</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hibernate.validator</groupId>
+                <artifactId>hibernate-validator</artifactId>
+                <version>8.0.0.Final</version>
+            </dependency>
 
-    <dependency>
-      <groupId>org.hibernate</groupId>
-      <artifactId>hibernate-core</artifactId>
-      <version>6.4.2.Final</version>
-    </dependency>
-    <dependency>
-      <groupId>org.hibernate.validator</groupId>
-      <artifactId>hibernate-validator</artifactId>
-      <version>8.0.0.Final</version>
-    </dependency>
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct</artifactId>
+                <version>${org.mapstruct.version}</version>
+            </dependency>
 
-    <dependency>
-      <groupId>org.mapstruct</groupId>
-      <artifactId>mapstruct</artifactId>
-      <version>${org.mapstruct.version}</version>
-    </dependency>
+            <dependency>
+                <groupId>org.testcontainers</groupId>
+                <artifactId>junit-jupiter</artifactId>
+                <version>1.15.3</version>
+                <scope>test</scope>
+            </dependency>
 
-    <dependency>
-      <groupId>org.testcontainers</groupId>
-      <artifactId>junit-jupiter</artifactId>
-      <version>1.15.3</version>
-      <scope>test</scope>
-    </dependency>
+            <dependency>
+                <groupId>com.h2database</groupId>
+                <artifactId>h2</artifactId>
+                <version>2.2.220</version>
+            </dependency>
 
-    <dependency>
-      <groupId>com.h2database</groupId>
-      <artifactId>h2</artifactId>
-      <version>2.2.220</version>
-    </dependency>
+            <dependency>
+                <groupId>group.fortil</groupId>
+                <artifactId>ex2-commons</artifactId>
+                <version>1.1-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>group.fortil</groupId>
+                <artifactId>ex2-model-jpa</artifactId>
+                <version>1.1-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>group.fortil</groupId>
+                <artifactId>ex2-persistence-spring</artifactId>
+                <version>1.1-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>group.fortil</groupId>
+                <artifactId>ex2-spring-business-core</artifactId>
+                <version>1.1-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>group.fortil</groupId>
+                <artifactId>ex2-spring-business</artifactId>
+                <version>1.1-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>group.fortil</groupId>
+                <artifactId>ex2-ws-api</artifactId>
+                <version>1.1-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>group.fortil</groupId>
+                <artifactId>ex2-ws-server</artifactId>
+                <version>1.1-SNAPSHOT</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
-    <dependency>
-      <groupId>group.fortil</groupId>
-      <artifactId>ex2-commons</artifactId>
-      <version>1.1-SNAPSHOT</version>
-    </dependency>
-    <dependency>
-      <groupId>group.fortil</groupId>
-      <artifactId>ex2-model-jpa</artifactId>
-      <version>1.1-SNAPSHOT</version>
-    </dependency>
-    <dependency>
-      <groupId>group.fortil</groupId>
-      <artifactId>ex2-persistence-spring</artifactId>
-      <version>1.1-SNAPSHOT</version>
-    </dependency>
-      <dependency>
-        <groupId>group.fortil</groupId>
-        <artifactId>ex2-spring-business-core</artifactId>
-        <version>1.1-SNAPSHOT</version>
-      </dependency>
-    <dependency>
-      <groupId>group.fortil</groupId>
-      <artifactId>ex2-spring-business</artifactId>
-      <version>1.1-SNAPSHOT</version>
-    </dependency>
-    <dependency>
-      <groupId>group.fortil</groupId>
-      <artifactId>ex2-ws-api</artifactId>
-      <version>1.1-SNAPSHOT</version>
-    </dependency>
-    <dependency>
-      <groupId>group.fortil</groupId>
-      <artifactId>ex2-ws-server</artifactId>
-      <version>1.1-SNAPSHOT</version>
-    </dependency>
-  </dependencies>
-</dependencyManagement>
-
-  <!-- =============================================================== -->
-  <!-- Build -->
-  <!-- =============================================================== -->
-  <build>
-    <pluginManagement>
-      <plugins>
-        <plugin>
-          <groupId>org.springframework.boot</groupId>
-          <artifactId>spring-boot-maven-plugin</artifactId>
-        </plugin>
-        </plugins>
-    </pluginManagement>
-  </build>
+    <!-- =============================================================== -->
+    <!-- Build -->
+    <!-- =============================================================== -->
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
 
 
 </project>

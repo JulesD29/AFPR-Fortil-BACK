@@ -18,7 +18,7 @@ public class TagController implements ITagController {
 
     @Autowired
     private TagService tagService;
-    
+
 
     @Override
     @GetMapping("/tags")
@@ -28,7 +28,7 @@ public class TagController implements ITagController {
 
     @Override
     @GetMapping("/tags/{id}")
-    public ResponseEntity<TagBusiness> findById(Long id)  {
+    public ResponseEntity<TagBusiness> findById(Long id) {
         TagBusiness tagBusiness = tagService.findById(id).orElseThrow(() -> new CustomNotFoundException("Tag not found for this id ::" + id));
         return ResponseEntity.ok().body(tagBusiness);
     }
@@ -41,7 +41,7 @@ public class TagController implements ITagController {
 
     @Override
     @PutMapping("/tags/{id}")
-    public ResponseEntity<TagBusiness> update(Long id, TagBusiness tagDetails)  {
+    public ResponseEntity<TagBusiness> update(Long id, TagBusiness tagDetails) {
         TagBusiness tag = tagService.findById(id).orElseThrow(() -> new CustomNotFoundException("Tag not found for this id ::" + id));
 
         tag.setValue(tagDetails.getValue());
@@ -51,7 +51,7 @@ public class TagController implements ITagController {
 
     @Override
     @DeleteMapping("/tags/{id}")
-    public Map<String, Boolean> deleteById(Long id)  {
+    public Map<String, Boolean> deleteById(Long id) {
         TagBusiness tag = tagService.findById(id).orElseThrow(() -> new CustomNotFoundException("Tag not found for this id ::" + id));
 
         tagService.delete(tag);
