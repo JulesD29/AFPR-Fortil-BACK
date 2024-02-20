@@ -35,7 +35,7 @@ public class MessageServiceTest {
 
     @BeforeEach
     void setUp() {
-        MockitoAnnotations.initMocks(this);
+        MockitoAnnotations.openMocks(this); // Voir quoi faire si ressource fermée
     }
 
     @Test
