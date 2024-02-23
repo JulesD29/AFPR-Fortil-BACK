@@ -23,7 +23,7 @@ public class UserRepositoryTest {
     @Test
     public void givenUserObject_whenUserFindById_thenReturnUserAttributes() {
         // Given
-        User user = new User("John", "Doe", "john.doe@example.com", "password123");
+        User user = new User("John", "Doe", "john.doe@example.com", "password123", "ROLE_TEST");
         userRepository.save(user);
 
         // When

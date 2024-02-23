@@ -63,4 +63,15 @@ public class UserService implements IUserService<UserBusiness, Serializable> {
     public List<UserBusiness> findAll() {
         return mapListModelToBusiness((List<User>) userRepository.findAll());
     }
+
+
+    // TODO Faire le test
+    public UserBusiness findByUserName(String firstName) throws Exception {
+        User user = userRepository.findByUserName(firstName);
+        if (user == null) {
+            throw new Exception("User not found: " + firstName);
+        }
+        return userMapper.userToUserBusiness(user);
+    }
+
 }

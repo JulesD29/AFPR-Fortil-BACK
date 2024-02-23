@@ -16,7 +16,7 @@ public class UserMapperTest {
     @Test
     public void givenUserObject_whenMapUserToUserBusiness_ReturnComparisonBetweenUserAttributesAndUserBusinessAttributes() {
         // Given
-        User user = new User(123L, "John", "Doe", "john.doe@example.com", "password123");
+        User user = new User(123L, "John", "Doe", "john.doe@example.com", "password123", "ROLE_TEST");
 
         // When
         UserBusiness userBusiness = userMapper.userToUserBusiness(user);
@@ -33,7 +33,7 @@ public class UserMapperTest {
     @Test
     public void givenUserBusinessObject_whenMapUserBusinessToUser_ReturnComparisonBetweenUserBusinessAttributesAndUserAttributes() {
         // Given
-        UserBusiness userBusiness = new UserBusiness(123L, "John", "Doe", "john.doe@example.com", "password123");
+        UserBusiness userBusiness = new UserBusiness(123L, "John", "Doe", "john.doe@example.com", "password123", "ROLE_TEST");
 
         // When
         User user = userMapper.userBusinessToUser(userBusiness);

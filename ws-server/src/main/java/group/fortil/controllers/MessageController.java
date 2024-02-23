@@ -4,6 +4,7 @@ import group.fortil.business.MessageBusiness;
 import group.fortil.exceptions.CustomNotFoundException;
 import group.fortil.interfaceControllers.IMessageController;
 import group.fortil.service.MessageService;
+import group.fortil.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +17,8 @@ public class MessageController implements IMessageController {
 
     @Autowired
     private MessageService messageService;
+    @Autowired
+    private UserService userService;
 
     @Override
     @GetMapping("/messages")
@@ -28,6 +31,12 @@ public class MessageController implements IMessageController {
     public ResponseEntity<MessageBusiness> findById(Long id) {
         MessageBusiness messageBusiness = messageService.findById(id).orElseThrow(() -> new CustomNotFoundException("Message not found for this id ::" + id));
         return ResponseEntity.ok().body(messageBusiness);
+    }
+
+    @Override
+    @GetMapping("/messages/user:{firstName}")
+    public List<MessageBusiness> findMessagesByUserFirstName(String firstName) {
+        return messageService.findMessagesByUserFirstName(firstName);
     }
 
     @Override

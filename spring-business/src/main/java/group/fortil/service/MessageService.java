@@ -3,6 +3,7 @@ package group.fortil.service;
 import group.fortil.business.MessageBusiness;
 import group.fortil.entities.Message;
 import group.fortil.mapper.MessageMapper;
+import group.fortil.mapper.UserMapper;
 import group.fortil.repository.MessageRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,8 @@ public class MessageService implements IMessageService<MessageBusiness, Serializ
 
     @Autowired
     private MessageMapper messageMapper;
+    @Autowired
+    private UserMapper userMapper;
 
 
     private List<Message> mapListBusinessToModel(List<MessageBusiness> messageBusiness) {
@@ -55,6 +58,10 @@ public class MessageService implements IMessageService<MessageBusiness, Serializ
     @Override
     public Optional<MessageBusiness> findById(Long id) {
         return messageRepository.findById(id).map(model -> messageMapper.messageToMessageBusiness(model));
+    }
+
+    public List<MessageBusiness> findMessagesByUserFirstName(String firstName) {
+        return mapListModelToBusiness((List<Message>) messageRepository.findMessagesByUserFirstName(firstName));
     }
 
     @Override

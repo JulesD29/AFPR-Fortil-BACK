@@ -18,6 +18,9 @@ public interface IMessageController {
     @GetMapping("/messages/{id}")
     ResponseEntity<MessageBusiness> findById(@PathVariable(value = "id") Long id);
 
+    @GetMapping("/messages/user:{firstName}")
+    List<MessageBusiness> findMessagesByUserFirstName(@PathVariable("firstName") String firstName);
+
     @PostMapping("/messages")
     MessageBusiness create(@Valid @RequestBody MessageBusiness messageBusiness);
 

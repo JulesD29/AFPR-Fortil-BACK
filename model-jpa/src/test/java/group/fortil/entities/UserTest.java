@@ -78,5 +78,18 @@ public class UserTest {
         // Then
         assertEquals(expectedPassword, user.getPassword());
     }
+
+    @Test
+    public void givenUserObjectAndUserRole_whenSetUserRoleToUserObject_thenReturnUserRoleWithGetMethod() {
+        // Given
+        String expectedRole = "ROLE_TEST";
+        User user = new User();
+
+        // When
+        user.setRole(expectedRole);
+
+        // Then
+        assertEquals(expectedRole, user.getRole());
+    }
 }
 

@@ -31,7 +31,7 @@ public class MessageRepositoryTest {
     @Test
     public void givenMessageObject_whenMessageFindById_thenReturnMessageAttributes() {
         // Given
-        User user = new User("John", "Doe", "john.doe@example.com", "password123");
+        User user = new User("John", "Doe", "john.doe@example.com", "password123", "ROLE_TEST");
         userRepository.save(user);
 
         Message message = new Message("Test Message", new Date(), user);

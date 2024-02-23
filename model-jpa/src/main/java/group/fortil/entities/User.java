@@ -22,32 +22,39 @@ public class User {
     @Column(name = "password")
     private String password;
 
+    @Column(name = "role")
+    private String role;
+
 
     // Constructeur de User
-    public User(){}
-    public User(String firstName, String lastName, String mail, String password) {
+    public User() {
+    }
+
+    public User(String firstName, String lastName, String mail, String password, String role) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.mail = mail;
         this.password = password;
+        this.role = role;
     }
-    public User(Long user_index, String firstName, String lastName, String mail, String password) {
+
+    public User(Long user_index, String firstName, String lastName, String mail, String password, String role) {
         this.user_index = user_index;
         this.firstName = firstName;
         this.lastName = lastName;
         this.mail = mail;
         this.password = password;
+        this.role = role;
     }
 
     // GETTER AND SETTER
 
-    
-    public void setUser_index(Long user_index) {
-        this.user_index = user_index;
-    }
-
     public Long getUser_index() {
         return user_index;
+    }
+
+    public void setUser_index(Long user_index) {
+        this.user_index = user_index;
     }
 
     public String getFirstName() {
@@ -80,5 +87,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

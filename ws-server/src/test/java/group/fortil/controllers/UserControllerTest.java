@@ -39,8 +39,8 @@ public class UserControllerTest {
     public void testFindAll() {
         // Given
         List<UserBusiness> userList = Arrays.asList(
-                new UserBusiness(1L, "John", "Doe", "john@example.com", "password1"),
-                new UserBusiness(2L, "Jane", "Doe", "jane@example.com", "password2")
+                new UserBusiness(1L, "John", "Doe", "john@example.com", "password1", "ROLE_TEST"),
+                new UserBusiness(2L, "Jane", "Doe", "jane@example.com", "password2", "ROLE_TEST")
         );
         when(userService.findAll()).thenReturn(userList);
 
@@ -57,7 +57,7 @@ public class UserControllerTest {
     public void testFindById_Success() {
         // Given
         Long userId = 1L;
-        UserBusiness user = new UserBusiness(userId, "John", "Doe", "john@example.com", "password");
+        UserBusiness user = new UserBusiness(userId, "John", "Doe", "john@example.com", "password", "ROLE_TEST");
         when(userService.findById(userId)).thenReturn(Optional.of(user));
 
         // When
@@ -83,8 +83,8 @@ public class UserControllerTest {
     @Test
     public void testCreate() {
         // Given
-        UserBusiness newUser = new UserBusiness(null, "John", "Doe", "john@example.com", "password");
-        UserBusiness savedUser = new UserBusiness(1L, "John", "Doe", "john@example.com", "password");
+        UserBusiness newUser = new UserBusiness(null, "John", "Doe", "john@example.com", "password", "ROLE_TEST");
+        UserBusiness savedUser = new UserBusiness(1L, "John", "Doe", "john@example.com", "password", "ROLE_TEST");
         when(userService.create(newUser)).thenReturn(savedUser);
 
         // When
@@ -99,8 +99,8 @@ public class UserControllerTest {
     public void testUpdate_Success() {
         // Given
         Long userId = 1L;
-        UserBusiness existingUser = new UserBusiness(userId, "Jane", "Doe", "jane@example.com", "password");
-        UserBusiness updatedUser = new UserBusiness(userId, "John", "Doe", "john@example.com", "password");
+        UserBusiness existingUser = new UserBusiness(userId, "Jane", "Doe", "jane@example.com", "password", "ROLE_TEST");
+        UserBusiness updatedUser = new UserBusiness(userId, "John", "Doe", "john@example.com", "password", "ROLE_TEST");
 
 
         when(userService.findById(userId)).thenReturn(Optional.of(existingUser));
@@ -118,7 +118,7 @@ public class UserControllerTest {
     public void testUpdate_NotFound() {
         // Given
         Long userId = 1L;
-        UserBusiness userDetails = new UserBusiness(null, "John", "Doe", "john@example.com", "password");
+        UserBusiness userDetails = new UserBusiness(null, "John", "Doe", "john@example.com", "password", "ROLE_TEST");
         when(userService.findById(userId)).thenReturn(Optional.empty());
 
         // When & Then
@@ -129,7 +129,7 @@ public class UserControllerTest {
     public void testDeleteById() {
         // Given
         Long userId = 1L;
-        UserBusiness existingUser = new UserBusiness(userId, "John", "Doe", "john@example.com", "password");
+        UserBusiness existingUser = new UserBusiness(userId, "John", "Doe", "john@example.com", "password", "ROLE_TEST");
         when(userService.findById(userId)).thenReturn(Optional.of(existingUser));
 
         // When

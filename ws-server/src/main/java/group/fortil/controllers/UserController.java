@@ -48,6 +48,7 @@ public class UserController implements IUserController {
         user.setLastName(userDetails.getLastName());
         user.setMail(userDetails.getMail());
         user.setPassword(userDetails.getPassword());
+        user.setRole(userDetails.getRole());
         final UserBusiness updatedUser = userService.update(user);
         return ResponseEntity.ok(updatedUser);
     }

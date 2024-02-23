@@ -5,7 +5,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
 
-public class UserBusiness implements IUserBusiness{
+public class UserBusiness implements IUserBusiness {
 
     @PositiveOrZero(message = "user_index cannot be negative or null")
     private Long user_index;
@@ -22,22 +22,29 @@ public class UserBusiness implements IUserBusiness{
     @NotNull(message = "password cannot be null")
     private String password;
 
+    @NotNull(message = "role cannot be null")
+    private String role;
 
 
     // Constructeur de UserBusiness
-    public UserBusiness(){}
-    public UserBusiness(String firstName, String lastName, String mail, String password) {
+    public UserBusiness() {
+    }
+
+    public UserBusiness(String firstName, String lastName, String mail, String password, String role) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.mail = mail;
         this.password = password;
+        this.role = role;
     }
-    public UserBusiness(Long user_index, String firstName, String lastName, String mail, String password) {
+
+    public UserBusiness(Long user_index, String firstName, String lastName, String mail, String password, String role) {
         this.user_index = user_index;
         this.firstName = firstName;
         this.lastName = lastName;
         this.mail = mail;
         this.password = password;
+        this.role = role;
     }
 
 
@@ -79,5 +86,13 @@ public class UserBusiness implements IUserBusiness{
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

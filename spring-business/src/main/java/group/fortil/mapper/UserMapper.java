@@ -17,6 +17,7 @@ public interface UserMapper {
     @Mapping(source = "user.lastName", target = "lastName")
     @Mapping(source = "user.mail", target = "mail")
     @Mapping(source = "user.password", target = "password")
+    @Mapping(source = "user.role", target = "role")
     */
     UserBusiness userToUserBusiness(User user);
 
@@ -27,6 +28,7 @@ public interface UserMapper {
     @Mapping(source = "userBusiness.lastName", target = "lastName")
     @Mapping(source = "userBusiness.mail", target = "mail")
     @Mapping(source = "userBusiness.password", target = "password")
+    @Mapping(source = "userBusiness.role", target = "role")
     */
     User userBusinessToUser(UserBusiness userBusiness);
 
