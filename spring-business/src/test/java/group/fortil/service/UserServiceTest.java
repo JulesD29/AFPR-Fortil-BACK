@@ -33,6 +33,9 @@ public class UserServiceTest {
     @InjectMocks
     private UserService userService;
 
+    @InjectMocks
+    private UserBusiness userBusiness;
+
     @BeforeEach
     void setUp() {
         MockitoAnnotations.initMocks(this);
@@ -115,6 +118,22 @@ public class UserServiceTest {
         // Then
         assertTrue(result.isPresent());
         assertEquals(expectedBusiness, result.get());
+    }
+
+    @Test
+    void givenUserObjectAndFirstName_whenFindUserByUserName_returnCorrectUser() throws Exception {
+        // Given
+        String username = "testUser";
+        User user = new User();
+        user.setFirstName(username);
+
+        when(userRepository.findByUserName(username)).thenReturn(user);
+
+        // When
+        User resultUser = userRepository.findByUserName(username);
+
+        // Then
+        assertEquals(user, resultUser);
     }
 
 

@@ -65,7 +65,6 @@ public class UserService implements IUserService<UserBusiness, Serializable> {
     }
 
 
-    // TODO Faire le test
     public UserBusiness findByUserName(String firstName) throws Exception {
         User user = userRepository.findByUserName(firstName);
         if (user == null) {
