@@ -43,6 +43,7 @@
         <module>spring-business</module>
         <module>ws-api</module>
         <module>ws-server</module>
+        <module>threads</module>
     </modules>
 
 
@@ -128,6 +129,11 @@
             <dependency>
                 <groupId>group.fortil</groupId>
                 <artifactId>ex2-ws-server</artifactId>
+                <version>1.1-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>group.fortil</groupId>
+                <artifactId>ex3-threads</artifactId>
                 <version>1.1-SNAPSHOT</version>
             </dependency>
         </dependencies>
