@@ -26,7 +26,7 @@ public class Main implements CommandLineRunner {
 
         //syncService.syncService1();
         //syncService.syncService2();
-        syncService.syncService3();
+        //syncService.syncService3();
 
 
         //asyncService.asyncService1();
